@@ -1,14 +1,14 @@
 {% extends 'accounts/base.html' %}
 
-{% block title %}<h1>Registration Page</h1>{% endblock %}
+{% block title %}Registration Page{% endblock %}
 
 {% block content %}
-
+{% load crispy_forms_tags %}
 <div >
     <h1>Register</h1>
     <form method="Post">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form|crispy}}
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
 </div>

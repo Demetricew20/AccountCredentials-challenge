@@ -3,11 +3,25 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
+    <style>
+      ul { list-style: none;}
+      a {text-decoration-line: none;}
+    </style>
 
 <div >
-    <h1>Home Page</h1>
-    <a href="{% url 'accounts:register' %}" >Register</a>
-    <a href="{% url 'accounts:login' %}" >Login</a>
+    <h2>Home Page</h2>
+    {% if user.is_authenticated %}
+    <ul style="list-style:{{none}}">
+        <li><a href="{% url 'accounts:update_password' %}" >Change Password</a></li>
+        <li><a href="{% url 'accounts:update_profile' user.id %}" >Change Username/Email</a></li>
+        <li><a href="{% url 'accounts:logout' %}" >Logout</a></li>
+    </ul>
+    {% else %}
+    <ul>
+        <li><a href="{% url 'accounts:register' %}" >Register</a></li>
+        <li><a href="{% url 'accounts:login' %}" >Login</a></li>
+    </ul>
+    {% endif %}
 
 </div>
 
